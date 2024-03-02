@@ -14,6 +14,28 @@ public class Name
 
 
     /**
+     * Accessor Getter method for the first name Variable
+     * @return first name of a person
+     */
+    public String getFirst()
+    {
+
+        return first;
+    }
+
+
+    /**
+     * Accessor Getter method for the last name Variable
+     * @return last name of a person
+     */
+    public String getLast()
+    {
+
+        return last;
+    }
+
+
+    /**
      * This constructor method will initialize and validate the Name data, as it can´t be blank, contain only whitespace
      * or be null.
      *
