@@ -267,36 +267,4 @@ public class Date implements Orderable, Comparable<Date>
     {
         return getYyyyMmDd();
     }
-
-
-    public static void main(String[] args)
-    {
-        // Test for non-leap year
-        testMonth(1, 2023, 31); // January
-        testMonth(2, 2023, 28); // February (non-leap year)
-        testMonth(3, 2023, 31); // March
-        // ... test other months
-
-        // Test for leap year
-        testMonth(2, 2024, 29); // February (leap year)
-
-        // Add more tests as needed
-    }
-
-
-    private static void testMonth(int month, int year, int expectedDays)
-    {
-
-        Date date       = new Date(); // Replace with actual constructor if necessary
-        int  actualDays = date.getNumberOfDaysPerMonth(month, year);
-        if(actualDays == expectedDays)
-        {
-            System.out.println("Test passed for month " + month + " of year " + year + ": " + expectedDays + " days.");
-        }
-        else
-        {
-            System.out.println(
-                    "Test FAILED for month " + month + " of year " + year + ". Expected: " + expectedDays + " days, Got: " + actualDays + " days.");
-        }
-    }
 }
