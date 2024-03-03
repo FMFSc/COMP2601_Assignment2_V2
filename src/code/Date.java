@@ -250,10 +250,30 @@ public class Date implements Orderable, Comparable<Date>
     }
 
 
+    /**
+     * Overriding the compareTo method will allow this method to determine which date is greater. As the requirement
+     * states 'Later dates are "larger"'.
+     *
+     * @param d the object to be compared.
+     * @return a POSITIVE integer if the date instance being compare to a provided date is later/larger. A NEGATIVE
+     *         integer if it is smaller, or ZERO if they are considered to be equals in an order perspective.
+     */
     @Override
-    public final int compareTo(Date o)
+    public final int compareTo(Date d)
     {
 
+        if(this.year != d.year)
+        {
+            return this.year - d.year;
+        }
+        else if(this.month != d.month)
+        {
+            return this.month - d.month;
+        }
+        else if(this.day != d.day)
+        {
+            return this.day - d.day;
+        }
         return 0;
     }
 
