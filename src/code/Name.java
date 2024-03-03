@@ -1,4 +1,5 @@
 /**
+ * COMP2601 - Assignment 01
  * This class implements a name structure for the data to be inputted. It has final instance variables, constructor
  * arguments, and accessor methods for String first and String last.
  *
