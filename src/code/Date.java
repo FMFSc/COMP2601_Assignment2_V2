@@ -1,6 +1,3 @@
-import java.time.Month;
-
-
 /**
  * @version 2.0
  * @author Fellipe Matheus Fumagali Scirea
@@ -10,7 +7,6 @@ public class Date implements Orderable, Comparable<Date>
     private final int day;
     private final int month;
     private final int year;
-    private  int      maximumDay;
 
 
 
@@ -46,18 +42,18 @@ public class Date implements Orderable, Comparable<Date>
     private static final int MINIMUM_MONTH;
     private static final int MAXIMUM_MONTH;
     private static final int MINIMUM_DAY;
-    private static final  int JAN;
-    private static final  int FEB;
-    private static final  int MAR;
-    private static final  int APR;
-    private static final  int MAY;
-    private static final  int JUN;
-    private static final  int JUL;
-    private static final  int AUG;
-    private static final  int SEP;
-    private static final  int OCT;
-    private static final  int NOV;
-    private static final  int DEC;
+    private static final int JAN;
+    private static final int FEB;
+    private static final int MAR;
+    private static final int APR;
+    private static final int MAY;
+    private static final int JUN;
+    private static final int JUL;
+    private static final int AUG;
+    private static final int SEP;
+    private static final int OCT;
+    private static final int NOV;
+    private static final int DEC;
     private static final int NONE;
     private static final int CENTURY;
     private static final int FORTH_CENTURY;
@@ -66,6 +62,7 @@ public class Date implements Orderable, Comparable<Date>
     public static final  int DAYS_IN_MONTH_30;
     public static final  int DAYS_IN_MONTH_29; // Leap year specific
     public static final  int DAYS_IN_MONTH_28;
+    private static final int SINGLE;
 
 
 
@@ -99,6 +96,7 @@ public class Date implements Orderable, Comparable<Date>
         DAYS_IN_MONTH_30 = 30;
         DAYS_IN_MONTH_29 = 29;
         DAYS_IN_MONTH_28 = 28;
+        SINGLE           = 1;
     }
 
 
@@ -157,9 +155,13 @@ public class Date implements Orderable, Comparable<Date>
         {
             throw new IllegalArgumentException("invalid month");
         }
-        else if(day < MINIMUM_DAY || day > maximumDay)
+        else if(day < MINIMUM_DAY)
         {
             throw new IllegalArgumentException("invalid day");
+        }
+        else if(day > this.getNumberOfDaysPerMonth(month, year))
+        {
+            throw new IllegalArgumentException("invalid day of the month");
         }
 
         this.day   = day;
@@ -234,19 +236,77 @@ public class Date implements Orderable, Comparable<Date>
     }
 
 
+    /**
+     * Calculates and returns the next chronological date following the current date.
+     * This method implements the `next` method from the Orderable interface.
+     * It increments the current date by one day, taking into account the length of the month and the transition
+     * between years. If the current date is the last day of the month, the method advances to the first day of the
+     * following month. Similarly, if it's the last day of December, the method transitions to January 1st of the
+     * next year.
+     *
+     * @return Date representing the day immediately following the current date.
+     */
     @Override
-    public final Orderable next()
+    public final Date next()
     {
 
-        return null;
+        Date next = new Date(this.day, this.month, this.year);
+        if(next.day < getNumberOfDaysPerMonth(next.month, next.year))
+        {
+            next = new Date(next.day + SINGLE, next.month, next.year);
+        }
+        else
+        {
+            if(next.month < MAXIMUM_MONTH)
+            {
+                next = new Date(MINIMUM_DAY, next.month + SINGLE, next.year);
+            }
+            else
+            {
+                next = new Date(MINIMUM_DAY, MINIMUM_MONTH, next.year + SINGLE);
+            }
+        }
+
+        return next;
     }
 
 
+    /**
+     * Implements the 'previous' method as specified by the Orderable interface.
+     * This method calculates and returns the date immediately preceding the current date.
+     * It decrements the current date by one day, taking into account the length of the month and the transition
+     * between years. If the current date is the first day of a month, the method returns the last day of the
+     * preceding month. Specifically, if the current date is January 1st, the method returns December 31st of the
+     * previous year.
+     * *
+     * @return Date representing the day immediately preceding the current date.
+     */
     @Override
-    public final Orderable previous()
+    public final Date previous()
     {
 
-        return null;
+        Date previous = new Date(this.day, this.month, this.year);
+        if(previous.day > MINIMUM_DAY)
+        {
+            previous = new Date(previous.day - SINGLE, previous.month, previous.year);
+        }
+        else
+        {
+            if(previous.month > MINIMUM_MONTH)
+            {
+                previous = new Date(previous.getNumberOfDaysPerMonth(previous.month - SINGLE, previous.year),
+                                    previous.month - SINGLE,
+                                    previous.year);
+            }
+            else
+            {
+                previous = new Date(previous.getNumberOfDaysPerMonth(MAXIMUM_MONTH, previous.year - SINGLE),
+                                    MAXIMUM_MONTH,
+                                    previous.year - SINGLE);
+            }
+        }
+
+        return previous;
     }
 
 
@@ -261,8 +321,11 @@ public class Date implements Orderable, Comparable<Date>
     @Override
     public final int compareTo(Date d)
     {
-
-        if(this.year != d.year)
+        if(d == null)
+        {
+            return 1;
+        }
+        else if(this.year != d.year)
         {
             return this.year - d.year;
         }
