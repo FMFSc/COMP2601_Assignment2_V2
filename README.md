@@ -17,5 +17,6 @@ V2.0 started as an improvement project over v1.0, where several issues were limi
 While V1.0 passed some tests, v2.0 aims for a perfect execution against tests and best programming practices.
 
 Learnings:
+The use of constants and the removal of hard-coded numbers from within the code base is challanging but fun!
 
 Improvement:
