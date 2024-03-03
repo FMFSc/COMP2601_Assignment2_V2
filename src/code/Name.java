@@ -15,6 +15,7 @@ public class Name
 
     /**
      * Accessor Getter method for the first name Variable
+     *
      * @return first name of a person
      */
     public String getFirst()
@@ -26,6 +27,7 @@ public class Name
 
     /**
      * Accessor Getter method for the last name Variable
+     *
      * @return last name of a person
      */
     public String getLast()
@@ -59,5 +61,31 @@ public class Name
         this.last  = last;
     }
 
+
+    /**
+     * the GetPrettyName method will format any given name, in any given format condition, and return with the first
+     * letter as upper case for both first and last name, and the other letters as lower case.
+     *
+     * @return the formatted version of the name variable, with proper formatting(first letter is upper case, the others
+     *         are lower case)
+     */
+    public final String getPrettyName()
+    {
+
+        return first.substring(0, 1).toUpperCase() + first.substring(1).toLowerCase() + " " +
+               last.substring(0, 1).toUpperCase() + last.substring(1).toLowerCase();
+    }
+
+
+    /**
+     * getInitials method will be used to extract the firs letter of the first and last names.
+     * @return First letter of the first name, and last name, in upper case.
+     */
+    public final String getInitials()
+    {
+
+        return first.substring(0, 1).toUpperCase() + "." +
+               last.substring(0, 1).toUpperCase() + ".";
+    }
 
 }
