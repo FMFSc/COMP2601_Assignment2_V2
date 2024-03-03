@@ -1,6 +1,9 @@
+import java.time.Month;
+
+
 /**
  * @version 2.0
- * @Author Fellipe Matheus Fumagali Scirea
+ * @author Fellipe Matheus Fumagali Scirea
  */
 public class Date implements Orderable, Comparable<Date>
 {
@@ -14,7 +17,6 @@ public class Date implements Orderable, Comparable<Date>
     /**
      * This class defines constants to be used throughout the code, following best practices.
      * These constants represent various date-related values:
-     *
      * Minimum year:
      *   MINIMUM_YEAR: The minimum supported year within the application.
      * Month and day ranges:
@@ -44,22 +46,26 @@ public class Date implements Orderable, Comparable<Date>
     private static final int MINIMUM_MONTH;
     private static final int MAXIMUM_MONTH;
     private static final int MINIMUM_DAY;
-    public static final  int JAN;
-    public static final  int FEB;
-    public static final  int MAR;
-    public static final  int APR;
-    public static final  int MAY;
-    public static final  int JUN;
-    public static final  int JUL;
-    public static final  int AUG;
-    public static final  int SEP;
-    public static final  int OCT;
-    public static final  int NOV;
-    public static final  int DEC;
+    private static final  int JAN;
+    private static final  int FEB;
+    private static final  int MAR;
+    private static final  int APR;
+    private static final  int MAY;
+    private static final  int JUN;
+    private static final  int JUL;
+    private static final  int AUG;
+    private static final  int SEP;
+    private static final  int OCT;
+    private static final  int NOV;
+    private static final  int DEC;
     private static final int NONE;
     private static final int CENTURY;
     private static final int FORTH_CENTURY;
     private static final int FORTH_YEAR;
+    public static final  int DAYS_IN_MONTH_31;
+    public static final  int DAYS_IN_MONTH_30;
+    public static final  int DAYS_IN_MONTH_29; // Leap year specific
+    public static final  int DAYS_IN_MONTH_28;
 
 
 
@@ -69,26 +75,30 @@ public class Date implements Orderable, Comparable<Date>
      */
     static
     {
-        MINIMUM_DAY   = 1;
-        MINIMUM_MONTH = 1;
-        MINIMUM_YEAR  = 1;
-        MAXIMUM_MONTH = 12;
-        JAN           = 1;
-        FEB           = 2;
-        MAR           = 3;
-        APR           = 4;
-        MAY           = 5;
-        JUN           = 6;
-        JUL           = 7;
-        AUG           = 8;
-        SEP           = 9;
-        OCT           = 10;
-        NOV           = 11;
-        DEC           = 12;
-        NONE          = 0;
-        CENTURY       = 100;
-        FORTH_CENTURY = 400;
-        FORTH_YEAR    = 4;
+        MINIMUM_DAY      = 1;
+        MINIMUM_MONTH    = 1;
+        MINIMUM_YEAR     = 1;
+        MAXIMUM_MONTH    = 12;
+        JAN              = 1;
+        FEB              = 2;
+        MAR              = 3;
+        APR              = 4;
+        MAY              = 5;
+        JUN              = 6;
+        JUL              = 7;
+        AUG              = 8;
+        SEP              = 9;
+        OCT              = 10;
+        NOV              = 11;
+        DEC              = 12;
+        NONE             = 0;
+        CENTURY          = 100;
+        FORTH_CENTURY    = 400;
+        FORTH_YEAR       = 4;
+        DAYS_IN_MONTH_31 = 31;
+        DAYS_IN_MONTH_30 = 30;
+        DAYS_IN_MONTH_29 = 29;
+        DAYS_IN_MONTH_28 = 28;
     }
 
 
@@ -129,71 +139,12 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * This method is used to determine if a given date, is in a year that has 366 days, also known as leap year. Every
-     * year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100, but
-     * these centurial years are leap years if they are exactly divisible by 400. For example, the years 1700, 1800, and
-     * 1900 are not leap years, but the years 1600 and 2000 are.
+     * The constructor for the Date class will test the provided arguments against the parameters established as minimum
+     * and maximum days, months and minimum year.
      *
-     * @return true when the year is a leap year.
-     */
-    private boolean isLeapYear()
-    {
-        if(this.getYear() % FORTH_YEAR != NONE)
-        {
-            return false;
-        }
-        else if(this.getYear() % CENTURY == NONE && this.getYear() % FORTH_CENTURY != NONE)
-        {
-            return false;
-        }
-        return true;
-    }
-
-
-    /**
-     * This method will obtain the maximum days in a month, based on the month, as the roman calendar established.
-     *
-     * @return maximumDay and that is the maximum number of day on the selected month.
-     */
-    private final int getNumberOfDaysPerMonth(int month, int year)
-    {
-        switch (month)
-        {
-            case JAN:
-            case MAR:
-            case MAY:
-            case JUL:
-            case AUG:
-            case OCT:
-            case DEC:
-                maximumDay = 31;
-                return maximumDay;
-                break;
-            case APR:
-            case JUN:
-            case SEP:
-            case NOV:
-                maximumDay = 30;
-                return maximumDay;
-                break;
-            case FEB:
-                if(isLeapYear = true){
-                    maximumDay = 29;
-                    return maximumDay;
-                    break;
-                }
-                maximumDay = 28;
-                return maximumDay;
-        }
-        return maximumDay;
-    }
-
-    /**
-     * The constructor for the Date class will test the provided arguments against the parameters established as
-     * minimum and maximum days, months and minimum year.
-     * @param day Day from the date being created.
+     * @param day   Day from the date being created.
      * @param month Month from the date being created.
-     * @param year Year from the date being created.
+     * @param year  Year from the date being created.
      */
     public Date(int day, int month, int year)
     {
@@ -216,19 +167,75 @@ public class Date implements Orderable, Comparable<Date>
         this.year  = year;
     }
 
+
+    /**
+     * This method is used to determine if a given date, is in a year that has 366 days, also known as leap year. Every
+     * year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100, but
+     * these centurial years are leap years if they are exactly divisible by 400. For example, the years 1700, 1800, and
+     * 1900 are not leap years, but the years 1600 and 2000 are.
+     *
+     * @return true when the year is a leap year.
+     */
+    private final boolean isLeapYear(int year)
+    {
+
+        if(year % FORTH_YEAR != NONE)
+        {
+            return false;
+        }
+        else if(year % CENTURY == NONE && year % FORTH_CENTURY != NONE)
+        {
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * This method will obtain the maximum days in a month, based on the month, as the Gregorian calendar established.
+     *
+     * @return daysInMonth: which represents the number of days on the month of the provided month and year arguments.
+     */
+    private final int getNumberOfDaysPerMonth(int month, int year)
+    {
+
+        int daysInMonth;
+
+        if(month == JAN || month == MAR || month == MAY || month == JUL || month == AUG || month == OCT || month == DEC)
+        {
+            daysInMonth = DAYS_IN_MONTH_31;
+        }
+        else if(month == APR || month == JUN || month == SEP || month == NOV)
+        {
+            daysInMonth = DAYS_IN_MONTH_30;
+        }
+        else if(month == FEB && isLeapYear(year))
+        {
+            daysInMonth = DAYS_IN_MONTH_29;
+        }
+        else
+        {
+            daysInMonth = DAYS_IN_MONTH_28;
+        }
+        return daysInMonth;
+
+    }
+
+
+
     /**
      * Formatting date method, that will present it in the ISO 8601 format
      *
      * @return a string with the formatted date
      */
-    public String getYyyyMmDd()
+    public final String getYyyyMmDd()
     {
         return String.format("%04d-%02d-%02d", year, month, day);
     }
 
 
     @Override
-    public Orderable next()
+    public final Orderable next()
     {
 
         return null;
@@ -236,7 +243,7 @@ public class Date implements Orderable, Comparable<Date>
 
 
     @Override
-    public Orderable previous()
+    public final Orderable previous()
     {
 
         return null;
@@ -244,7 +251,7 @@ public class Date implements Orderable, Comparable<Date>
 
 
     @Override
-    public int compareTo(Date o)
+    public final int compareTo(Date o)
     {
 
         return 0;
@@ -256,8 +263,40 @@ public class Date implements Orderable, Comparable<Date>
      * @return
      */
     @Override
-    public String toString()
+    public final String toString()
     {
         return getYyyyMmDd();
+    }
+
+
+    public static void main(String[] args)
+    {
+        // Test for non-leap year
+        testMonth(1, 2023, 31); // January
+        testMonth(2, 2023, 28); // February (non-leap year)
+        testMonth(3, 2023, 31); // March
+        // ... test other months
+
+        // Test for leap year
+        testMonth(2, 2024, 29); // February (leap year)
+
+        // Add more tests as needed
+    }
+
+
+    private static void testMonth(int month, int year, int expectedDays)
+    {
+
+        Date date       = new Date(); // Replace with actual constructor if necessary
+        int  actualDays = date.getNumberOfDaysPerMonth(month, year);
+        if(actualDays == expectedDays)
+        {
+            System.out.println("Test passed for month " + month + " of year " + year + ": " + expectedDays + " days.");
+        }
+        else
+        {
+            System.out.println(
+                    "Test FAILED for month " + month + " of year " + year + ". Expected: " + expectedDays + " days, Got: " + actualDays + " days.");
+        }
     }
 }
