@@ -1,4 +1,5 @@
 /**
+ * COMP2601 - Assignment 01
  * The date class will implement several methods to be utilized within the other classes.
  * It implements the Orderable and Comparable interfaces.
  *

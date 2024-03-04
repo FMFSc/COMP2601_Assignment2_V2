@@ -1,4 +1,5 @@
 /**
+ * COMP2601 - Assignment 01
  * This Writeable interface will be a functional interface, therefore, will only have one abstract method.
  * The implementation is expected to have a suitable application to print the data.
  * @Author Fellipe Matheus Fumagali Scirea
