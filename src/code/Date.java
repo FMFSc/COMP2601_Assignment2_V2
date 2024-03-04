@@ -76,13 +76,13 @@ public class Date implements Orderable, Comparable<Date>
     private static final int      CENTENNIAL;
     private static final int      FORTH_CENTURY;
     private static final int      FORTH_YEAR;
-    public static final  int      DAYS_IN_MONTH_31;
-    public static final  int      DAYS_IN_MONTH_30;
-    public static final  int      DAYS_IN_MONTH_29; // Leap year specific
-    public static final  int      DAYS_IN_MONTH_28;
+    private static final  int      DAYS_IN_MONTH_31;
+    private static final  int      DAYS_IN_MONTH_30;
+    private static final  int      DAYS_IN_MONTH_29; // Leap year specific
+    private static final  int      DAYS_IN_MONTH_28;
     private static final int      SINGLE;
-    public static final  int      NUM_TWO;
-    public static final  int      NUM_THREE;
+    private static final  int      NUM_TWO;
+    private static final  int      NUM_THREE;
     private static final int      NUM_FOUR;
     private static final int      NUM_FIVE;
     private static final int      NUM_SIX;
@@ -150,7 +150,7 @@ public class Date implements Orderable, Comparable<Date>
      *
      * @return day of the date object
      */
-    public int getDay()
+    public final int getDay()
     {
 
         return day;
@@ -162,7 +162,7 @@ public class Date implements Orderable, Comparable<Date>
      *
      * @return month of the date object
      */
-    public int getMonth()
+    public final int getMonth()
     {
 
         return month;
@@ -174,7 +174,7 @@ public class Date implements Orderable, Comparable<Date>
      *
      * @return year of the date object
      */
-    public int getYear()
+    public final int getYear()
     {
 
         return year;

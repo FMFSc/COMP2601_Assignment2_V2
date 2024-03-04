@@ -11,9 +11,9 @@
 
 public class Person implements Comparable<Person>
 {
-    private final Date born;
-    private final Date died;
-    private final Name name;
+    private Date born;
+    private Date died;
+    private Name name;
 
 
     /**
@@ -21,7 +21,7 @@ public class Person implements Comparable<Person>
      *
      * @return Date of birth.
      */
-    public Date getBorn()
+    public final Date getBorn()
     {
 
         return born;
@@ -33,7 +33,7 @@ public class Person implements Comparable<Person>
      *
      * @return Date of death.
      */
-    public Date getDied()
+    public final Date getDied()
     {
 
         return died;
@@ -45,20 +45,72 @@ public class Person implements Comparable<Person>
      *
      * @return Name of the person object.
      */
-    public Name getName()
+    public final Name getName()
     {
 
         return name;
     }
 
 
+    public final void setBorn(Date born)
+    {
+
+        this.born = born;
+    }
+
+
+    public final void setDied(Date died)
+    {
+
+        this.died = died;
+    }
+
+
+    public final void setName(Name name)
+    {
+
+        this.name = name;
+    }
+
+
+    // /**
+    //  * The constructor will test if the person has a valid name, and date of birth and death.
+    //  *
+    //  * @param born represents the date of birth of the Person object
+    //  * @param died represents the date of death of the Person object
+    //  * @param name represents the full name of the person.
+    //  */
+    // public Person(Date born, Date died, Name name)
+    // {
+    //
+    //     if(name == null)
+    //     {
+    //         throw new IllegalPersonException("invalid name");
+    //     }
+    //     else if(born == null)
+    //     {
+    //         throw new IllegalPersonException("invalid date of birth");
+    //     }
+    //     else if(died )
+    //     {
+    //         throw new IllegalPersonException("invalid date of death");
+    //     }
+    //     else
+    //     {
+    //         this.born = born;
+    //         this.died = died;
+    //         this.name = name;
+    //     }
+    // }
+
+
     /**
-     * The constructor will test if the person has a valid name, and date of birth and death.
-     * @param born
-     * @param died
-     * @param name
+     * The constructor will test if the person has a valid name, and date of birth.
+     *
+     * @param born represents the date of birth of the Person object
+     * @param name represents the full name of the person.
      */
-    public Person(Date born, Date died, Name name)
+    public Person(Date born, Name name)
     {
 
         if(name == null)
@@ -72,8 +124,41 @@ public class Person implements Comparable<Person>
         else
         {
             this.born = born;
-            this.died = died;
             this.name = name;
         }
     }
+
+
+    /**
+     * This method sets the died instance variable to the dateOfDeath provided.
+     *
+     * @param dateOfDeath represents the Person object's date of death
+     */
+    public final void die(Date dateOfDeath)
+    {
+
+        if(dateOfDeath == null)
+        {
+            throw new IllegalArgumentException("invalid date of death");
+        }
+        setDied(dateOfDeath);
+    }
+
+
+    /**
+     * This method returns true if the Person is alive; otherwise returns false. This method will determine the living
+     * status of the Person object, by checking the existence of a date of death for said Person. A person is considered
+     * alive when the died attribute is null or that it has not been set. If there is a died attribute, the person is
+     * considered deceased.
+     *
+     * @return the state of life of the Person object, being true for alive, false for deceased.
+     */
+    public final boolean isAlive()
+    {
+
+        return died == null;
+
+    }
+
+
 }

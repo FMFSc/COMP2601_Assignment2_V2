@@ -19,7 +19,7 @@ public class Name
      *
      * @return first name of a person
      */
-    public String getFirst()
+    public final String getFirst()
     {
 
         return first;
@@ -31,7 +31,7 @@ public class Name
      *
      * @return last name of a person
      */
-    public String getLast()
+    public final String getLast()
     {
 
         return last;
