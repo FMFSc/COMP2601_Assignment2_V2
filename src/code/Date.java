@@ -1,14 +1,17 @@
 /**
+ * The date class will implement several methods to be utilized within the other classes.
+ * It implements the Orderable and Comparable interfaces.
+ *
  * @version 2.0
  * @author Fellipe Matheus Fumagali Scirea
  */
+
+
 public class Date implements Orderable, Comparable<Date>
 {
     private final int day;
     private final int month;
     private final int year;
-
-
 
     /**
      * This class defines constants to be used throughout the code, following best practices.
@@ -34,35 +37,63 @@ public class Date implements Orderable, Comparable<Date>
      *   DEC: December (12)
      * Calculation Constants:
      *   NONE: Used to represent zero within the code.
-     *   CENTURY: Used to represent 100 years within the code.
+     *   CENTENNIAL: Used to represent 100 years within the code.
      *   FORTH_CENTURY: Used to represent 400 years.
      *   FORTH_YEAR: Used to represent 4 years;
+     *   SINGLE: Used to represent the number 1;
+     *   NUM_TWO: Used to represent the number 2;
+     *   NUM_THREE: Used to represent the number 3;
+     *   NUM_FOUR: Used to represent the number 4;
+     *   NUM_FIVE: Used to represent the number 5;
+     *   NUM_SIX: Used to represent the number 6;
+     *   NUM_SEVEN: Used to represent the number 7;
+     *   NUM_TWELVE: Used to represent the number 12;
+     *   NUM_SIXTEEN: Used to represent the number 16;
+     *   NUM_SEVENTEEN: Used to represent the number 17;
+     *   NUM_EIGHTEEN: Used to represent the number 18;
+     *   NUM_TWENTY: Used to represent the number 20;
+     *   NUM_TWENTY_ONE: Used to represent the number 21;
+     *   daysOfTheWeek: An array with the abbreviation for the days of the week, with only the initial 3 letters.
      */
-    private static final int MINIMUM_YEAR;
-    private static final int MINIMUM_MONTH;
-    private static final int MAXIMUM_MONTH;
-    private static final int MINIMUM_DAY;
-    private static final int JAN;
-    private static final int FEB;
-    private static final int MAR;
-    private static final int APR;
-    private static final int MAY;
-    private static final int JUN;
-    private static final int JUL;
-    private static final int AUG;
-    private static final int SEP;
-    private static final int OCT;
-    private static final int NOV;
-    private static final int DEC;
-    private static final int NONE;
-    private static final int CENTURY;
-    private static final int FORTH_CENTURY;
-    private static final int FORTH_YEAR;
-    public static final  int DAYS_IN_MONTH_31;
-    public static final  int DAYS_IN_MONTH_30;
-    public static final  int DAYS_IN_MONTH_29; // Leap year specific
-    public static final  int DAYS_IN_MONTH_28;
-    private static final int SINGLE;
+    private static final int      MINIMUM_YEAR;
+    private static final int      MINIMUM_MONTH;
+    private static final int      MAXIMUM_MONTH;
+    private static final int      MINIMUM_DAY;
+    private static final int      JAN;
+    private static final int      FEB;
+    private static final int      MAR;
+    private static final int      APR;
+    private static final int      MAY;
+    private static final int      JUN;
+    private static final int      JUL;
+    private static final int      AUG;
+    private static final int      SEP;
+    private static final int      OCT;
+    private static final int      NOV;
+    private static final int      DEC;
+    private static final int      NONE;
+    private static final int      CENTENNIAL;
+    private static final int      FORTH_CENTURY;
+    private static final int      FORTH_YEAR;
+    public static final  int      DAYS_IN_MONTH_31;
+    public static final  int      DAYS_IN_MONTH_30;
+    public static final  int      DAYS_IN_MONTH_29; // Leap year specific
+    public static final  int      DAYS_IN_MONTH_28;
+    private static final int      SINGLE;
+    public static final  int      NUM_TWO;
+    public static final  int      NUM_THREE;
+    private static final int      NUM_FOUR;
+    private static final int      NUM_FIVE;
+    private static final int      NUM_SIX;
+    private static final int      NUM_SEVEN;
+    private static final int      NUM_TWELVE;
+    private static final int      NUM_SIXTEEN;
+    private static final int      NUM_SEVENTEEN;
+    private static final int      NUM_EIGHTEEN;
+    private static final int      NUM_TWENTY;
+    private static final int      NUM_TWENTY_ONE;
+    private static final String[] daysOfTheWeek;
+
 
 
 
@@ -89,7 +120,7 @@ public class Date implements Orderable, Comparable<Date>
         NOV              = 11;
         DEC              = 12;
         NONE             = 0;
-        CENTURY          = 100;
+        CENTENNIAL       = 100;
         FORTH_CENTURY    = 400;
         FORTH_YEAR       = 4;
         DAYS_IN_MONTH_31 = 31;
@@ -97,6 +128,19 @@ public class Date implements Orderable, Comparable<Date>
         DAYS_IN_MONTH_29 = 29;
         DAYS_IN_MONTH_28 = 28;
         SINGLE           = 1;
+        NUM_TWO          = 2;
+        NUM_THREE        = 3;
+        NUM_FOUR         = 4;
+        NUM_FIVE         = 5;
+        NUM_SIX          = 6;
+        NUM_SEVEN        = 7;
+        NUM_TWELVE       = 12;
+        NUM_SIXTEEN      = 16;
+        NUM_SEVENTEEN    = 17;
+        NUM_EIGHTEEN     = 18;
+        NUM_TWENTY       = 20;
+        NUM_TWENTY_ONE   = 21;
+        daysOfTheWeek    = new String[]{"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
     }
 
 
@@ -185,7 +229,7 @@ public class Date implements Orderable, Comparable<Date>
         {
             return false;
         }
-        else if(year % CENTURY == NONE && year % FORTH_CENTURY != NONE)
+        else if(year % CENTENNIAL == NONE && year % FORTH_CENTURY != NONE)
         {
             return false;
         }
@@ -349,5 +393,115 @@ public class Date implements Orderable, Comparable<Date>
     public final String toString()
     {
         return getYyyyMmDd();
+    }
+
+
+    /**
+     * This method acts a supporting method for the algorithm implemented in the getDayOfTheWeek() method.
+     * The objective is to assign a value to each month as their designated code to help in the evaluation for the
+     * getDayOfTheWeek() method.
+     *
+     * @param month
+     * @return
+     */
+    private final int getCodeForMonth(int month)
+    {
+
+        int[] monthCodes = {SINGLE, NUM_FOUR, NUM_FOUR, NONE, NUM_TWO, NUM_FIVE, NONE, NUM_THREE, NUM_SIX, SINGLE, NUM_FOUR, NUM_SIX};
+        return monthCodes[month];
+    }
+
+
+    /**
+     * This getOffset is a supporting method to be used in the calculation of the index of the week day.
+     * As some dates will require a special offset to be calculated, and this offset will be used in the step 5 of
+     * the getIndexDayOfTheWeek calculation, this method will follow the these requirements:
+     *
+     * January and February dates in leap years: add 6 to step 5
+     * All dates in the 1600s: add 6 to step 5
+     * All dates in the 1700s: add 4 to step 5
+     * All dates in the 1800s: add 2 to step 5
+     * All dates in the 2000s: add 6 to step 5
+     * All dates in the 2100s: add 4 to step 5
+     *
+     * @param monthOffset Month of the date being provided.
+     * @param yearOffset Year of the date being provided.
+     * @return the offset to be added to step 5 of the getIndexDayOfTheWeek method calculation.
+     */
+    private final int getOffset(int monthOffset, int yearOffset)
+    {
+
+        final int offset;
+        final int century;
+        century = yearOffset / CENTENNIAL;
+
+        if((monthOffset == JAN || monthOffset == FEB) && isLeapYear(yearOffset))
+        {
+            offset = NUM_SIX;
+        }
+        else if(century == NUM_SIXTEEN || century == NUM_TWENTY)
+        {
+            offset = NUM_SIX;
+        }
+        else if(century == NUM_SEVENTEEN || century == NUM_TWENTY_ONE)
+        {
+            offset = NUM_FOUR;
+        }
+        else if(century == NUM_EIGHTEEN)
+        {
+            offset = NUM_TWO;
+        }
+        else
+        {
+            offset = NONE;
+        }
+
+        return offset;
+    }
+
+
+    /**
+     *This method implements the algorithm that will be used to determine the day of the week as a String.
+     * The algorithm must follow a few steps, given a certain date object:
+     *
+     * Step 1:  Only look at the last two digits of the year and determine how many twelves fit in it.
+     * Step 2:  Determine the remainder of step 1's result, for 12.
+     * Step 3:  Determine how many fours fit into the remainder (step 2's result).
+     * Step 4:  Add the day of the month.
+     * Step 5:  Add the month code from the table below (hint: writing a private method to determine this would be a
+     *          good idea: private int getCodeForMonth(int month)):
+     *          Jan=1 | Feb=4 | Mar=4 |  Apr=0 | May=2 | Jun=5 | Jul=0 | Aug=3 | Sep=6 | Oct=1 | Nov=4 | Dec=6
+     * Step 6:  Add all of the above highlighted numbers, and then mod by 7.
+     * NOTE: some dates require special offsets to add after step 5.
+     *
+     * As the algorithm needed some external supporting methods, they were created and introduced on the necessary
+     * steps.
+     * Step 5 need both a supporting method called getOffset and getCodeForMonth
+     *
+     * @return a String representing the abbreviated day of the week, with its three first letters.
+     */
+    public final String getDayOfTheWeek()
+    {
+
+        final int indexDayOfTheWeek;
+        final int lastTwoDigitsOfYear;
+        final int step1;
+        final int step2;
+        final int step3;
+        final int step4;
+        final int step5;
+        final int step6;
+
+        lastTwoDigitsOfYear = this.year % CENTENNIAL;
+        step1               = lastTwoDigitsOfYear / NUM_TWELVE;
+        step2               = lastTwoDigitsOfYear % NUM_TWELVE;
+        step3               = step2 / NUM_FOUR;
+        step4               = this.day;
+        step5               = getCodeForMonth(this.month) + getOffset(this.month, this.year);
+        step6               = step1 + step2 + step3 + step4 + step5;
+        indexDayOfTheWeek   = step6 % NUM_SEVEN;
+
+
+        return daysOfTheWeek[indexDayOfTheWeek];
     }
 }
