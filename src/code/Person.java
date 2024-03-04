@@ -52,11 +52,28 @@ public class Person implements Comparable<Person>
     }
 
 
+    /**
+     * The constructor will test if the person has a valid name, and date of birth and death.
+     * @param born
+     * @param died
+     * @param name
+     */
     public Person(Date born, Date died, Name name)
     {
 
-        this.born = born;
-        this.died = died;
-        this.name = name;
+        if(name == null)
+        {
+            throw new IllegalPersonException("invalid name");
+        }
+        else if(born == null)
+        {
+            throw new IllegalPersonException("invalid date of birth");
+        }
+        else
+        {
+            this.born = born;
+            this.died = died;
+            this.name = name;
+        }
     }
 }
