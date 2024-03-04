@@ -177,10 +177,32 @@ public class Person implements Comparable<Person>
     @Override
     public final int compareTo(Person p)
     {
+
         if(this.getDateOfBirth() == null || p.getDateOfBirth() == null)
         {
             throw new NullPointerException("invalid date of birth");
         }
         return this.getDateOfBirth().compareTo(p.getDateOfBirth());
+    }
+
+
+    /**
+     * The method will return a statement in form of a String as the following examples:
+     * a) Alive people example: "Tiger Woods was born 1975-12-30 and is still alive"
+     * b) Dead people example: "Albert Einstein was born 1879-03-14 and died 1955-04-18"
+     *
+     * @return String with the person's information, as name and dates of birth and death.
+     */
+    @Override
+    public final String toString()
+    {
+
+        if(this.isAlive())
+        {
+            return String.format("%s was born on %s and is still alive.", name.getPrettyName(),
+                                 dateOfBirth.getYyyyMmDd());
+        }
+        return String.format("%s was born on %s and died on %s.", name.getPrettyName(), dateOfBirth.getYyyyMmDd(),
+                             dateOfDeath.getYyyyMmDd());
     }
 }
