@@ -32,7 +32,7 @@ public class IllegalPersonException extends RuntimeException
     public IllegalPersonException(String message)
     {
 
-        super();
+        super(message);
     }
 
 
@@ -47,7 +47,7 @@ public class IllegalPersonException extends RuntimeException
     public IllegalPersonException(String message, Throwable cause)
     {
 
-        super();
+        super(message, cause);
     }
 
 
@@ -62,7 +62,7 @@ public class IllegalPersonException extends RuntimeException
     public IllegalPersonException(Throwable cause)
     {
 
-        super();
+        super(cause);
     }
 
 
@@ -82,7 +82,7 @@ public class IllegalPersonException extends RuntimeException
                                      boolean writableStackTrace)
     {
 
-        super();
+        super(message, cause, enableSuppression, writableStackTrace);
     }
 
 
