@@ -194,7 +194,7 @@ public class Person implements Comparable<Person>
      * @return String with the person's information, as name and dates of birth and death.
      */
     @Override
-    public final String toString()
+    public String toString()
     {
 
         if(this.isAlive())
