@@ -11,8 +11,8 @@
 
 public class Person implements Comparable<Person>
 {
-    private Date born;
-    private Date died;
+    private Date dateOfBirth;
+    private Date dateOfDeath;
     private Name name;
 
 
@@ -21,10 +21,10 @@ public class Person implements Comparable<Person>
      *
      * @return Date of birth.
      */
-    public final Date getBorn()
+    public final Date getDateOfBirth()
     {
 
-        return born;
+        return dateOfBirth;
     }
 
 
@@ -33,10 +33,10 @@ public class Person implements Comparable<Person>
      *
      * @return Date of death.
      */
-    public final Date getDied()
+    public final Date getDateOfDeath()
     {
 
-        return died;
+        return dateOfDeath;
     }
 
 
@@ -52,17 +52,17 @@ public class Person implements Comparable<Person>
     }
 
 
-    public final void setBorn(Date born)
+    public final void setDateOfBirth(Date dateOfBirth)
     {
 
-        this.born = born;
+        this.dateOfBirth = dateOfBirth;
     }
 
 
-    public final void setDied(Date died)
+    public final void setDateOfDeath(Date dateOfDeath)
     {
 
-        this.died = died;
+        this.dateOfDeath = dateOfDeath;
     }
 
 
@@ -107,24 +107,24 @@ public class Person implements Comparable<Person>
     /**
      * The constructor will test if the person has a valid name, and date of birth.
      *
-     * @param born represents the date of birth of the Person object
+     * @param dateOfBirth represents the date of birth of the Person object
      * @param name represents the full name of the person.
      */
-    public Person(Date born, Name name)
+    public Person(Date dateOfBirth, Name name)
     {
 
         if(name == null)
         {
             throw new IllegalPersonException("invalid name");
         }
-        else if(born == null)
+        else if(dateOfBirth == null)
         {
             throw new IllegalPersonException("invalid date of birth");
         }
         else
         {
-            this.born = born;
-            this.name = name;
+            this.dateOfBirth = dateOfBirth;
+            this.name        = name;
         }
     }
 
@@ -141,7 +141,7 @@ public class Person implements Comparable<Person>
         {
             throw new IllegalArgumentException("invalid date of death");
         }
-        setDied(dateOfDeath);
+        setDateOfDeath(dateOfDeath);
     }
 
 
@@ -156,9 +156,31 @@ public class Person implements Comparable<Person>
     public final boolean isAlive()
     {
 
-        return died == null;
+        return dateOfDeath == null;
 
     }
 
 
+    /**
+     *The override compareTo method will evaluate the date of birth of this Person object against another specified
+     * Person.
+     *
+     * It will throw a NullPointerException in case any of the dates of birth is null.
+     * A younger person is considered greater, following the Date class compareTo method determination that a later date
+     * is greater.
+     *
+     * @param p the Person to be compared.
+     * @return a negative integers, zero or a positive integer, as this Person is older, same age, or younger
+     * respectively than the specified Person it is being compared against
+     * @throws NullPointerException if the date of birth of either this person or the specified person (p) is null.
+     */
+    @Override
+    public final int compareTo(Person p)
+    {
+        if(this.getDateOfBirth() == null || p.getDateOfBirth() == null)
+        {
+            throw new NullPointerException("invalid date of birth");
+        }
+        return this.getDateOfBirth().compareTo(p.getDateOfBirth());
+    }
 }
