@@ -16,6 +16,7 @@ public class Student extends Person
 
     /**
      * Getter method for the student number variable
+     *
      * @return
      */
     public final String getStudentNumber()
@@ -27,9 +28,8 @@ public class Student extends Person
 
     /**
      * Constructor method for the Student class, extending attributes from the Person class, such as name and date of
-     * birth.
-     * This constructor throws IllegalPersonException exceptions if born or name is null.
-     * It throws IllegalPersonException exceptions if studentNumber is null, blank, or not nine characters long.
+     * birth. This constructor throws IllegalPersonException exceptions if born or name is null. It throws
+     * IllegalPersonException exceptions if studentNumber is null, blank, or not nine characters long.
      *
      * @param dateOfBirth   Student's date of birth
      * @param name          Student's full name
@@ -58,13 +58,13 @@ public class Student extends Person
     /**
      * This class overrides the public String toString() method, which returns a String in one of these two exact
      * formats:
-     * a) Alive people example: "Tiger Woods (student number: A12345678) was born 1975-12-30 and is still alive"
-     * b) Dead people example: "Albert Einstein (student number: A87654321) was born 1879-03-14 and died 1955-
-     * 04-18"
-     * Use the parent's getName() return value, then its getPrettyName() method, and the born/died getYyyyMmDd()
+     *      a) Alive people example: "Tiger Woods (student number: A12345678) was born 1975-12-30 and is still
+     * alive"
+     *      b) Dead people example: "Albert Einstein (student number: A87654321) was born 1879-03-14 and died 1955-
+     * 04-18" Use the parent's getName() return value, then its getPrettyName() method, and the born/died getYyyyMmDd()
      * method.
      *
-     * @return a formatted
+     * @return a formatted string with the student personal data: Name, date of birth and death (if deceased)
      */
     @Override
     public final String toString()
