@@ -63,6 +63,7 @@ public class Teacher extends Person
      *
      * @return a formatted string with the teacher's personal information.
      */
+    @Override
     public final String toString()
     {
 
@@ -74,7 +75,5 @@ public class Teacher extends Person
         }
         return String.format("%s (specialty: %s) was born %s and died %s", getName().getPrettyName(), getSpecialty(),
                              getDateOfBirth().getYyyyMmDd(), getDateOfDeath().getYyyyMmDd());
-
-
     }
 }
