@@ -199,10 +199,10 @@ public class Person implements Comparable<Person>
 
         if(this.isAlive())
         {
-            return String.format("%s was born on %s and is still alive.", name.getPrettyName(),
+            return String.format("%s was born %s and is still alive", name.getPrettyName(),
                                  dateOfBirth.getYyyyMmDd());
         }
-        return String.format("%s was born on %s and died on %s.", name.getPrettyName(), dateOfBirth.getYyyyMmDd(),
+        return String.format("%s was born %s and died on %s", name.getPrettyName(), dateOfBirth.getYyyyMmDd(),
                              dateOfDeath.getYyyyMmDd());
     }
 }

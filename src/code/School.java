@@ -9,7 +9,7 @@ import java.util.List;
  * This class is used to generate a list of Person references, and export it into a txt file.
  *
  * @version 2.0
- * @Author Fellipe Matheus Fumagali Scirea
+ * @author Fellipe Matheus Fumagali Scirea
  */
 
 
@@ -21,28 +21,28 @@ public class School
 
     static
     {
-        currentYear = 2024;
+        currentYear = 2022;
     }
 
 
-    /**
-     * This is an instance initializer block, used to set up the "List" of "Person" references/objects.
+    /*
+      This is an instance initializer block, used to set up the "List" of "Person" references/objects.
      */
     {
         listOfPerson = new ArrayList<>();
     }
 
 
-    /**
-     * CONSTRUCTOR
-     * @param listOfPerson
-     */
-    public School(List<Person> listOfPerson)
-    {
-
-        this.listOfPerson = new ArrayList<>();
-
-    }
+    // /**
+    //  * CONSTRUCTOR
+    //  * @param listOfPerson
+    //  */
+    // public School(List<Person> listOfPerson)
+    // {
+    //
+    //     this.listOfPerson = new ArrayList<>();
+    //
+    // }
 
 
     /**
@@ -128,8 +128,9 @@ public class School
                 String name      = person.getName().getPrettyName();
                 String initials  = person.getName().getInitials();
                 String birthDate = person.getDateOfBirth().getYyyyMmDd();
+                String weekDay = person.getDateOfBirth().getDayOfTheWeek();
 
-                String output = String.format("%s (%s) was born on %s\n", name, initials, birthDate);
+                String output = String.format("%s (%s) was born on %s %s.", name, initials, weekDay, birthDate);
                 writer.write(output);
             }
         }
@@ -137,6 +138,34 @@ public class School
         {
             throw new RuntimeException(e);
         }
+    }
+
+
+    public static void main(String[] args)
+    {
+        School school = new School();
+
+        Student tiger     = new Student(new Date(30, 12, 1975), new Name("tiGer", "woODs"), "A12345678");
+        Teacher einstein  = new Teacher(new Date(14, 3, 1879), new Name("alBert", "einstEin"), "physics");
+        Person elon      = new Person(new Date(28,6,1971), new Name("eLon", "mUsk"));
+        Teacher bruce     = new Teacher(new Date(27,11,1940), new Name("bRuce", "lEe"), "jeet kun do");
+        Teacher oprah     = new Teacher(new Date(29, 1,1954), new Name("oprAh", "winFRey"), "life");
+        Student ramanujan = new Student(new Date(22, 12, 1887), new Name("srinivasa", "ramanujan"), "A88844411");
+        Person wayne     = new Person(new Date(26, 1, 1961), new Name("wAyne", "grEtzky"));
+
+        einstein.die(new Date(18, 4, 1955));
+        bruce.die(new Date(20, 7, 1973));
+        ramanujan.die(new Date(26, 4, 1920));
+
+        school.register(tiger);
+        school.register(einstein);
+        school.register(elon);
+        school.register(bruce);
+        school.register(oprah);
+        school.register(ramanujan);
+        school.register(wayne);
+
+        school.printAgesAndYears();
     }
 
 }

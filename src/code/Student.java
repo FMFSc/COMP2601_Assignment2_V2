@@ -72,10 +72,11 @@ public class Student extends Person
 
         if(isAlive())
         {
-            return String.format("%s (student number: %s) was born %s and is still alive.", getName().getPrettyName(),
+            return String.format("%s (student number: %s) was born %s and is still alive", getName().getPrettyName(),
                                  getStudentNumber(), getDateOfBirth().getYyyyMmDd());
         }
-        return String.format("%s (student number: %s) was born %s and died on %s.", getName().getPrettyName(),
+        return String.format("%s (student number: %s) was born %s and died %s",
+                             getName().getPrettyName(),
                              getStudentNumber(), this.getDateOfBirth().getYyyyMmDd(),
                              this.getDateOfDeath().getYyyyMmDd());
 
