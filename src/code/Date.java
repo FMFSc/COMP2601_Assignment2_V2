@@ -146,10 +146,11 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * Getter for the day portion of the Date object
+     * This Getter method retrieves the day of the month from the Date object.
      *
-     * @return day of the date object
+     * @return the day of the month.
      */
+
     public final int getDay()
     {
 
@@ -158,7 +159,7 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * Getter for the month portion of the Date object
+     * This Getter method retrieves the month portion of the Date object
      *
      * @return month of the date object
      */
@@ -170,7 +171,7 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * Getter for the year portion of the Date object
+     * This Getter method retrieves the year portion of the Date object
      *
      * @return year of the date object
      */
@@ -216,10 +217,10 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * This method is used to determine if a given date, is in a year that has 366 days, also known as leap year. Every
-     * year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100, but
-     * these centurial years are leap years if they are exactly divisible by 400. For example, the years 1700, 1800, and
-     * 1900 are not leap years, but the years 1600 and 2000 are.
+     * This method is used to determine if a given date, is a year that has 366 days, also known as leap year. Every
+     * year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100,
+     * however these centennial years are leap years if they are exactly divisible by 400. For example, the years 1700,
+     * 1800, and 1900 are not leap years, but the years 1600 and 2000 are.
      *
      * @return true when the year is a leap year.
      */
@@ -239,8 +240,11 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * This method will obtain the maximum days in a month, based on the month, as the Gregorian calendar established.
+     * This method will obtain the maximum days in a month, based on the month and year, as the Gregorian calendar
+     * established.
      *
+     * @param month the month (1-12)
+     * @param year  the year
      * @return daysInMonth: which represents the number of days on the month of the provided month and year arguments.
      */
     private final int getNumberOfDaysPerMonth(int month, int year)
@@ -271,7 +275,7 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * Formatting date method, that will present it in the ISO 8601 format
+     * Formatting date method, that will present it in the ISO 8601 format(YYYY-MM-DD).
      *
      * @return a string with the formatted date
      */
