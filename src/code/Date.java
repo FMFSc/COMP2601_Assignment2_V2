@@ -76,13 +76,13 @@ public class Date implements Orderable, Comparable<Date>
     private static final int      CENTENNIAL;
     private static final int      FORTH_CENTURY;
     private static final int      FORTH_YEAR;
-    private static final  int      DAYS_IN_MONTH_31;
-    private static final  int      DAYS_IN_MONTH_30;
-    private static final  int      DAYS_IN_MONTH_29; // Leap year specific
-    private static final  int      DAYS_IN_MONTH_28;
+    private static final int      DAYS_IN_MONTH_31;
+    private static final int      DAYS_IN_MONTH_30;
+    private static final int      DAYS_IN_MONTH_29; // Leap year specific
+    private static final int      DAYS_IN_MONTH_28;
     private static final int      SINGLE;
-    private static final  int      NUM_TWO;
-    private static final  int      NUM_THREE;
+    private static final int      NUM_TWO;
+    private static final int      NUM_THREE;
     private static final int      NUM_FOUR;
     private static final int      NUM_FIVE;
     private static final int      NUM_SIX;
@@ -96,11 +96,11 @@ public class Date implements Orderable, Comparable<Date>
     private static final String[] daysOfTheWeek;
 
 
-
-
-
     /**
-     * Initializing the constants in a static block, to avoid initializing and assigning on the same line;
+     * This static block is used to initialize the constants previously created. to avoid
+     * Initializing the constants in this static block will ensure that all constants are set up before they are used
+     * anywhere in the class, avoiding the practice of hardcoding or inline initialization.
+     * line;
      */
     static
     {
@@ -141,7 +141,7 @@ public class Date implements Orderable, Comparable<Date>
         NUM_EIGHTEEN     = 18;
         NUM_TWENTY       = 20;
         NUM_TWENTY_ONE   = 21;
-        daysOfTheWeek    = new String[]{"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
+        daysOfTheWeek    = new String[]{"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
     }
 
 
@@ -192,7 +192,7 @@ public class Date implements Orderable, Comparable<Date>
     public Date(int day, int month, int year)
     {
 
-        if(year <= MINIMUM_YEAR)
+        if(year < MINIMUM_YEAR)
         {
             throw new IllegalArgumentException("invalid year");
         }
@@ -387,8 +387,10 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * Overriding the toString method as a requirement
-     * @return
+     * Overrides the default toString method. This implementation represents the object in a 'YYYY-MM-DD' format,
+     * leveraging the getYyyyMmDd() method.
+     *
+     * @return A string representing the date in 'YYYY-MM-DD' format.
      */
     @Override
     public final String toString()
@@ -398,18 +400,22 @@ public class Date implements Orderable, Comparable<Date>
 
 
     /**
-     * This method acts a supporting method for the algorithm implemented in the getDayOfTheWeek() method.
-     * The objective is to assign a value to each month as their designated code to help in the evaluation for the
-     * getDayOfTheWeek() method.
+     * Provides the numerical code associated with each month, which is an integral part of the algorithm used in the
+     * getDayOfTheWeek() method. This method maps each month to a specific code that is used in calculating the day of
+     * the week. Each month's code is determined by its position in the calendar, with January being 1, February being
+     * 2, and so on. Additionally, the month code should be as provided in the program requirements for the
+     * implementation of this algorithm, as follows: January = 1 | February = 4; | March = 4; | April = 0; | May = 2 |
+     * June = 5 | July = 0 | August = 3 | September = 6 | October = 1 | November = 4 | December = 6
      *
-     * @param month
-     * @return
+     * @param month The integer representing the month (1 for January, 2 for February, etc.).
+     * @return The code associated with the given month, as used in the day-of-the-week calculation.
      */
     private final int getCodeForMonth(int month)
     {
-
-        int[] monthCodes = {SINGLE, NUM_FOUR, NUM_FOUR, NONE, NUM_TWO, NUM_FIVE, NONE, NUM_THREE, NUM_SIX, SINGLE, NUM_FOUR, NUM_SIX};
-        return monthCodes[month];
+        final int[] monthCodes;
+        monthCodes = new int[] {SINGLE, NUM_FOUR, NUM_FOUR, NONE, NUM_TWO, NUM_FIVE, NONE, NUM_THREE, NUM_SIX, SINGLE,
+                       NUM_FOUR, NUM_SIX};
+        return monthCodes[month-1];
     }
 
 
@@ -497,8 +503,8 @@ public class Date implements Orderable, Comparable<Date>
         step1               = lastTwoDigitsOfYear / NUM_TWELVE;
         step2               = lastTwoDigitsOfYear % NUM_TWELVE;
         step3               = step2 / NUM_FOUR;
-        step4               = this.day;
-        step5               = getCodeForMonth(this.month) + getOffset(this.month, this.year);
+        step4               = this.getDay();
+        step5               = getCodeForMonth(this.getMonth()) + getOffset(this.getMonth(), this.getYear());
         step6               = step1 + step2 + step3 + step4 + step5;
         indexDayOfTheWeek   = step6 % NUM_SEVEN;
 
