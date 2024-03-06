@@ -52,20 +52,36 @@ public class Person implements Comparable<Person>
     }
 
 
+    /**
+     * Accessor method that sets the date of birth of a Person object.
+     *
+     * @param dateOfBirth the date of birth to be set
+     * @return void
+     */
     public final void setDateOfBirth(Date dateOfBirth)
     {
 
         this.dateOfBirth = dateOfBirth;
     }
 
-
+    /**
+     * Accessor method that sets the date of death of a Person object.
+     *
+     * @param dateOfDeath the date of death to be set
+     * @return void
+     */
     public final void setDateOfDeath(Date dateOfDeath)
     {
 
         this.dateOfDeath = dateOfDeath;
     }
 
-
+    /**
+     * Accessor method that sets the name of a Person object.
+     *
+     * @param name represents the full name of a person, as a string, composed by first and last name.
+     * @return void
+     */
     public final void setName(Name name)
     {
 
@@ -74,7 +90,8 @@ public class Person implements Comparable<Person>
 
 
     /**
-     * The constructor will test if the person has a valid name, and date of birth.
+     * The constructor will test if the person has a valid name and date of birth. Upon passing the tests, it will
+     * construct a Person object with the validated data.
      *
      * @param dateOfBirth represents the date of birth of the Person object
      * @param name represents the full name of the person.
@@ -99,9 +116,11 @@ public class Person implements Comparable<Person>
 
 
     /**
-     * This method sets the died instance variable to the dateOfDeath provided.
+     * Sets the date of death for the Person object.
      *
-     * @param dateOfDeath represents the Person object's date of death
+     * This method updates the date of death for the Person object to the specified date.
+     *
+     * @param dateOfDeath the date representing the Person's date of death
      */
     public final void die(Date dateOfDeath)
     {

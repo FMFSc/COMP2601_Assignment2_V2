@@ -79,7 +79,10 @@ public class School
 
 
     /**
+     * Prints the ages and corresponding years for each person in the list.
      *
+     * This method iterates over the list of Person objects and prints their full name, birth year, and age
+     * for each year until the current year or the year of death (if applicable).
      */
     public final void printAgesAndYears()
     {
@@ -112,6 +115,15 @@ public class School
     }
 
 
+    /**
+     * Saves details of each Person object to a text file named "people.txt".
+     * <p>
+     * This method iterates over the list of Person objects and writes their details, including name, initials,
+     * birthdate, and, if deceased, death date, to a text file. The file format is as follows:
+     * - For living persons: "<FullName> (<Initials>) was born on <Weekday Birth> <Birth Date>."
+     * - For deceased persons: "<Full Name> (<Initials>) was born on <Weekday Birth> <Birth Date> and died on
+     * <Weekday Death> <Death Date>." The text file is saved in the current directory.
+     */
     public void saveDetails()
     {
         try (FileWriter writer = new FileWriter("people.txt"))

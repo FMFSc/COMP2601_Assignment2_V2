@@ -4,7 +4,7 @@
  * specialty and public String getSpecialty().
  *
  * @version 2.0
- * @Author Fellipe Matheus Fumagali Scirea
+ * @author Fellipe Matheus Fumagali Scirea
  */
 
 

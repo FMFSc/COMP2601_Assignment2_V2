@@ -79,7 +79,9 @@ public class Name
 
 
     /**
-     * getInitials method will be used to extract the firs letter of the first and last names.
+     * The getInitials method will be used to extract the firs letter of the first and last names, in capital letters.
+     * Each letter will be followed by a dot and no spaces.
+     *
      * @return First letter of the first name, and last name, in upper case.
      */
     public final String getInitials()
