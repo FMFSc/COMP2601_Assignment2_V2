@@ -1,11 +1,11 @@
 /**
  * COMP2601 - Assignment 01
- * The class will be used to create Person objects throughout the programm.
+ * The class will be used to create Person objects throughout the program.
  * Each person will have its own variables as date of birth, death and name.
  * This class will implement the comparable interface.
  *
  * @version 2.0
- * @Author Fellipe Matheus Fumagali Scirea
+ * @author Fellipe Matheus Fumagali Scirea
  */
 
 
@@ -71,37 +71,6 @@ public class Person implements Comparable<Person>
 
         this.name = name;
     }
-
-
-    // /**
-    //  * The constructor will test if the person has a valid name, and date of birth and death.
-    //  *
-    //  * @param born represents the date of birth of the Person object
-    //  * @param died represents the date of death of the Person object
-    //  * @param name represents the full name of the person.
-    //  */
-    // public Person(Date born, Date died, Name name)
-    // {
-    //
-    //     if(name == null)
-    //     {
-    //         throw new IllegalPersonException("invalid name");
-    //     }
-    //     else if(born == null)
-    //     {
-    //         throw new IllegalPersonException("invalid date of birth");
-    //     }
-    //     else if(died )
-    //     {
-    //         throw new IllegalPersonException("invalid date of death");
-    //     }
-    //     else
-    //     {
-    //         this.born = born;
-    //         this.died = died;
-    //         this.name = name;
-    //     }
-    // }
 
 
     /**

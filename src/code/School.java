@@ -25,29 +25,22 @@ public class School
     }
 
 
-    /*
-      This is an instance initializer block, used to set up the "List" of "Person" references/objects.
+    /**
+     * Instance initializer block for the class.
+     * Initializes the 'listOfPerson' with an empty ArrayList. This block runs before any constructor  whenever an
+     * instance of the class is created. It ensures that 'listOfPerson' is ready to store* 'Person'
+     * objects/references as soon as the class instance is created.
      */
     {
         listOfPerson = new ArrayList<>();
     }
 
 
-    // /**
-    //  * CONSTRUCTOR
-    //  * @param listOfPerson
-    //  */
-    // public School(List<Person> listOfPerson)
-    // {
-    //
-    //     this.listOfPerson = new ArrayList<>();
-    //
-    // }
-
-
     /**
-     * GETTER
-     * @return
+     * The getter method returns the list of persons.
+     * This method gives access to the current list of Person objects.
+     *
+     * @return The current list of Person objects.
      */
     public List<Person> getListOfPerson()
     {
