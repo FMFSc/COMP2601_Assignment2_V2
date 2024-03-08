@@ -64,6 +64,7 @@ public class Person implements Comparable<Person>
         this.dateOfBirth = dateOfBirth;
     }
 
+
     /**
      * Accessor method that sets the date of death of a Person object.
      *
@@ -75,6 +76,7 @@ public class Person implements Comparable<Person>
 
         this.dateOfDeath = dateOfDeath;
     }
+
 
     /**
      * Accessor method that sets the name of a Person object.

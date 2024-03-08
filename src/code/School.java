@@ -114,10 +114,9 @@ public class School
         }
     }
 
-
     /**
      * Saves details of each Person object to a text file named "people.txt".
-     * <p>
+     *
      * This method iterates over the list of Person objects and writes their details, including name, initials,
      * birthdate, and, if deceased, death date, to a text file. The file format is as follows:
      * - For living persons: "<FullName> (<Initials>) was born on <Weekday Birth> <Birth Date>."
